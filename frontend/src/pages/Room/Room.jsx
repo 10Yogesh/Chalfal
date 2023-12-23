@@ -34,7 +34,11 @@ const Room = () => {
     fetchRoom();
   }, [roomId]);
 
-  const handleMuteClick = () => {
+  const handleMuteClick = (clientId) => {
+    if (clientId !== user.id) {
+      return;
+    }
+    console.log("clientId", clientId);
     setMute((prev) => !prev);
   };
 
@@ -59,11 +63,7 @@ const Room = () => {
           {uniqueClients.map((client) => (
             <div className={styles.client} key={client.id}>
               <div className={styles.userHead}>
-                <img
-                  className={styles.userAvatar}
-                  src={client.avatar}
-                  alt=""
-                />
+                <img className={styles.userAvatar} src={client.avatar} alt="" />
                 <audio
                   autoPlay
                   ref={(instance) => {
@@ -71,7 +71,7 @@ const Room = () => {
                   }}
                 />
                 <button
-                  onClick={handleMuteClick}
+                  onClick={() => handleMuteClick(client.id)} // Pass clientId here
                   className={styles.micBtn}
                   disabled={client.id !== user.id}
                 >

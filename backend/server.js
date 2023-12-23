@@ -87,7 +87,8 @@ io.on('connection',(socket)=>{
     })
 
     //handle mute/unmute
-    socket.on(ACTIONS.MUTE, ({ roomId, userId }) => {        
+    socket.on(ACTIONS.MUTE, ({ roomId, userId }) => {  
+        // console.log("mute", userId)    
         const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
         clients.forEach((clientId) => {
             io.to(clientId).emit(ACTIONS.MUTE, {
@@ -97,7 +98,8 @@ io.on('connection',(socket)=>{
         });
     });
 
-    socket.on(ACTIONS.UN_MUTE, ({ roomId, userId }) => {       
+    socket.on(ACTIONS.UN_MUTE, ({ roomId, userId }) => {    
+        // console.log("unmute", userId)      
         const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
         clients.forEach((clientId) => {
             io.to(clientId).emit(ACTIONS.UNMUTE, {

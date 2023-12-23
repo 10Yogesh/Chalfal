@@ -21,7 +21,7 @@ class AuthController {
 
     //send OTP
     try {
-      //   await otpService.sendBySms(`+977${phone}`, otp);
+      await otpService.sendBySms(`+977${phone}`, otp);
       return res.json({
         hash: `${hash}.${expires}`,
         phone,
