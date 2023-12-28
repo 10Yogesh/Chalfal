@@ -103,7 +103,6 @@ class RoomsController {
 
       const allproduct = await roomModel
         .find()
-        .limit(5)
         .lean()
         .populate("speakers")
         .populate("ownerId")

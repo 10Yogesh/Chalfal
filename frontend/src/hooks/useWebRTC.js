@@ -200,7 +200,7 @@ export const useWebRTC = (roomId, user) => {
 
   const setMute = (mute, userId) => {
     console.log("mute/unmute", mute);
-    const clientIdx = clientsRef.current  
+    const clientIdx = clientsRef.current
       .map((client) => client.id)
       .indexOf(userId);
 
